@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en"> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,6 +30,7 @@
             box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
             width: 90%;
             max-width: 500px;
+            text-align: center;
         }
 
         input {
@@ -63,18 +63,54 @@
             font-size: 0.9rem;
             opacity: 0.6;
         }
+
+        /* Loading spinner styling */
+        #loadingSpinner {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #03A9F4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Image styling */
+        #headerImage {
+            width: 80%; /* You can adjust the size */
+            max-width: 600px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <h1>Web Proxy</h1>
+    <!-- Image added here -->
+    <img id="headerImage" src="https://github.com/Rileg21/Year12Work/blob/main/dlrrecords.png" alt="Your Image">
+
     <div class="container">
         <p>Enter the website URL you want to access:</p>
         <input type="text" id="urlInput" placeholder="https://example.com">
         <button onclick="openProxy()">Go</button>
+        
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner">
+            <div class="spinner"></div>
+        </div>
     </div>
 
-    <footer>Powered by concentrated autism</footer>
+    <footer>Powered by GitHub Pages & Cloudflare Workers</footer>
 
     <script>
         function openProxy() {
@@ -82,6 +118,10 @@
             if (!url.startsWith("http")) {
                 url = "https://" + url; // Ensure correct format
             }
+
+            // Show the loading spinner when the button is clicked
+            document.getElementById("loadingSpinner").style.display = "block";
+
             // Pass the URL as a query parameter to the Cloudflare Worker
             window.location.href = "https://wandering-brook-a82e.riley-berry2109.workers.dev/?url=" + encodeURIComponent(url);
         }
