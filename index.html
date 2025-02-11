@@ -84,12 +84,12 @@
         }
 
         #headerImage {
-            width: 60%; /*size*/
+            width: 60%;
             max-width: 400px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
-        
+
         .side-image {
             position: absolute;
             top: 20%;
@@ -104,22 +104,50 @@
         .right {
             right: 10px;
         }
+
+        /* Audio Player Styling */
+        .audio-player {
+            margin-top: 20px;
+        }
+
+        .mute-button {
+            background-color: #f44336;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .mute-button:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
 
     <h1>DanielLarsonNYC13</h1>
-<img id="headerImage" src="dlrrecords.png" alt="Your Image">
-<img src="freaky.jpg" class="side-image left" alt="Left Image">
-<img src="Screenshot 2024-04-08 194104.png" class="side-image right" alt="Right Image">
+    <img id="headerImage" src="dlrrecords.png" alt="Your Image">
+    <img src="freaky.jpg" class="side-image left" alt="Left Image">
+    <img src="Screenshot 2024-04-08 194104.png" class="side-image right" alt="Right Image">
 
     <div class="container">
         <p>Enter the website URL you want to access:</p>
         <input type="text" id="urlInput" placeholder="https://example.com">
         <button onclick="openProxy()">Go</button>
-        
+
         <div id="loadingSpinner">
             <div class="spinner"></div>
+        </div>
+
+        <!-- Audio Player with Mute Button -->
+        <div class="audio-player">
+            <audio id="audioPlayer" controls>
+                <source src="ID3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="mute-button" onclick="toggleMute()">Mute</button>
         </div>
     </div>
 
@@ -136,7 +164,18 @@
 
             window.location.href = "https://wandering-brook-a82e.riley-berry2109.workers.dev/?url=" + encodeURIComponent(url);
         }
+
+        // Mute functionality
+        function toggleMute() {
+            var audio = document.getElementById("audioPlayer");
+            if (audio.muted) {
+                audio.muted = false;
+            } else {
+                audio.muted = true;
+            }
+        }
     </script>
 
 </body>
 </html>
+
