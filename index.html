@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Proxy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        .container {
+            background: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+         
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            margin-top: 10px;
+        }
+        
+        button {
+            background: #03A9F4;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #0288D1;
+        }
+        
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Web Proxy</h1>
+    <div class="container">
+        <p>Enter the website URL you want to access:</p>
+        <input type="text" id="urlInput" placeholder="https://example.com">
+        <button onclick="openProxy()">Go</button>
+    </div>
+    
+    <footer>Powered by GitHub Pages & Cloudflare Workers</footer>
+
+    <script>
+        function openProxy() {
+            let url = document.getElementById("urlInput").value;
+            if (!url.startsWith("http")) {
+                url = "https://" + url; // Ensure correct format
+            }
+            // Pass the URL as a query parameter to the Cloudflare Worker
+            window.location.href = "https://wandering-brook-a82e.riley-berry2109.workers.dev/?url=" + encodeURIComponent(url);
+        }
+    </script>
+
+</body>
+</html>
